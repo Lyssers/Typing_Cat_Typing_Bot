@@ -1,5 +1,5 @@
 # TheTypingCatTypingBot
-Very simple Python typing bot for the website TheTypingCat.com
+Very simple Python "typing bot" selenium scripts for websites TheTypingCat.com and 10FastFingers.com
 
 ![alt text](https://github.com/Lyssers/TheTypingCatTypingBot/blob/master/screenshot.png)
 
