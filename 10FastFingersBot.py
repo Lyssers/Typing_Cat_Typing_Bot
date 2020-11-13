@@ -1,14 +1,24 @@
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys
 import re
 import time
+import platform
+from pathlib import Path, PureWindowsPath
+import os
+from selenium.webdriver.common.keys import Keys
 
 #Enabling Extension Support:
 #Change /q634iaqw.default-esr/ to your Firefox profile location
+if platform.system() == 'Windows':
+       extensionPath = str(Path.home()) + str(PureWindowsPath('/AppData/Roaming/Mozilla/Firefox/Profiles/agv1sry4.default/extensions')) + os.sep
+else:
+    extensionPath =  "~/.mozilla/firefox/q634iaqw.default-esr/extensions/"
+      
 extensions = [
-    "~/.mozilla/firefox/q634iaqw.default-esr/extensions/https-everywhere@eff.org.xpi", #HTTPS Everywhere
-    "~/.mozilla/firefox/q634iaqw.default-esr/extensions/uBlock0@raymondhill.net.xpi", #Ublock Origin
+    "https-everywhere@eff.org.xpi", #HTTPS Everywhere
+    "uBlock0@raymondhill.net.xpi", #Ublock Origin
+    #"jid1-MnnxcxisBPnSXQ@jetpack.xpi" #Privacy Badger
+    #Add Your Extension here
     ]
 
 #Going on 10FastFingers
@@ -19,7 +29,7 @@ firefox.get('https://10fastfingers.com/typing-test/english')
 #Sometimes extensions disappear when navigating to a different URL, so we do it after we go to the website
 #This can cause some ads to still display
 for extension in extensions:
-    firefox.install_addon(extension, temporary=True)
+    firefox.install_addon(extensionPath + extension, temporary=True)
 
 #Sleep so the website can load and not slow us down loading
 time.sleep(5) #Seconds
